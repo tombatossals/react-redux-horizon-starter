@@ -1,0 +1,7 @@
+node_modules
+npm-debug.log
+dist/
+logs/
+.build
+config/horizon-cert.pem
+config/horizon-key.pem
