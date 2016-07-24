@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import styles from 'components/Youtube/VideoList/style'
+import styles from './styles'
 
 const VideoList = (props) => (
   <ul>

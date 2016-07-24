@@ -1,10 +1,10 @@
 import React from 'react'
-import VideoList from 'components/Youtube/VideoList'
-import DebouncedInput from 'components/Youtube/DebouncedInput'
+import VideoList from './VideoList'
+import DebouncedInput from './DebouncedInput'
 
 const KEY = 'AIzaSyBQ0inJMYo3nyDlSs5KnDtRQl86kpsRNqI'
 
-export default class Youtube extends React.Component {
+export default class VideoSearch extends React.Component {
   state = {
     results: []
   }

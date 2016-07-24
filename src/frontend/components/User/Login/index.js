@@ -1,11 +1,15 @@
 import React from 'react'
-import styles from 'components/User/Login/style'
-import { UserStatus } from 'lib/constants'
+import styles from './styles'
+import { AsyncStatus, UserStatus } from 'lib/constants'
 
 export default class Login extends React.Component {
   static propTypes = {
-    onSubmit: React.PropTypes.func.isRequired,
+    onAuthenticate: React.PropTypes.func.isRequired,
     status: React.PropTypes.string.isRequired
+  }
+
+  state = {
+    status: undefined
   }
 
   githubLogin = () => {
@@ -13,7 +17,7 @@ export default class Login extends React.Component {
       status: UserStatus.REQUEST
     })
 
-    this.props.onSubmit({
+    this.props.onAuthenticate({
       type: 'github'
     })
   }
@@ -23,7 +27,7 @@ export default class Login extends React.Component {
       status: UserStatus.REQUEST
     })
 
-    this.props.onSubmit({
+    this.props.onAuthenticate({
       type: 'google'
     })
   }
@@ -40,6 +44,11 @@ export default class Login extends React.Component {
           <button style={styles.github} onClick={this.githubLogin}>
             Github Sign in
           </button>
+          {this.state.status === UserStatus.REQUEST &&
+            <div style={styles.loading}>
+              <img src="/static/images/loading.gif" />
+            </div>
+          }
         </div>
       </div>
     )

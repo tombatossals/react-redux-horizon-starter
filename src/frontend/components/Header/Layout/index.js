@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../Logo'
-import styles from './style'
+import styles from './styles'
 import { getUserPropTypes } from 'lib/proptypes'
 import { UserStatus } from 'lib/constants'
 import { Link } from 'react-router'
