@@ -33,7 +33,6 @@ export const authenticate = (authdata) =>
     }
   }
 
-
 export const checkAuthToken = () =>
   dispatch => {
     const checkAuthTokenAction = createAction(UserActions.USER_CHECK_AUTH_TOKEN)
