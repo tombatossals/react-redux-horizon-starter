@@ -4,7 +4,7 @@ import { Login, Logout } from '../containers/User'
 import Layout from '../containers/Layout'
 import VideoSearch from '../components/VideoSearch'
 import Home from '../components/Home'
-import RequireAuth from '../containers/RequireAuth'
+import requireAuth from '../containers/RequireAuth'
 
 const Routes = (props) => (
   <Router history={props.history}>
@@ -13,7 +13,7 @@ const Routes = (props) => (
       <Route path="home" component={Home} />
       <Route path="login" component={Login} />
       <Route path="logout" component={Logout} />
-      <Route path="video-search" component={RequireAuth(VideoSearch)} />
+      <Route path="video-search" component={requireAuth(VideoSearch)} />
     </Route>
   </Router>
 )

@@ -6,7 +6,7 @@ export const AsyncStatus = {
 }
 
 export const UserStatus = {
-  REQUEST: 'REQUEST',
+  UNDETERMINED: 'UNDETERMINED',
   AUTHENTICATED: 'AUTHENTICATED',
   ANONYMOUS: 'ANONYMOUS'
 }

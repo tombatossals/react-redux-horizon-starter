@@ -1,0 +1,13 @@
+.header-layout {
+  padding: 0em 1em;
+}
+
+.header-logo {
+  float: left;
+}
+
+.header-menu {
+  float: right;
+  margin-top: 0.5em;
+  cursor: pointer;
+}

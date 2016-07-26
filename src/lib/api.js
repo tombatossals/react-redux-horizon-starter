@@ -1,15 +1,16 @@
-import Horizon from '@horizon/client'
+import hz from '@horizon/client'
 
-const horizon = Horizon({
+const hzconn = hz({
   authType: 'token',
-  secure: true
+  secure: false,
+  host: 'http://localhost:8181'
 })
 
 const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
-    if (horizon.hasAuthToken()) {
-      horizon.connect()
-      return horizon.currentUser().fetch().subscribe(user =>
+    if (hzconn.hasAuthToken()) {
+      hzconn.connect()
+      return hzconn.currentUser().fetch().subscribe(user =>
         resolve(user)
       )
     }
@@ -18,27 +19,27 @@ const getCurrentUser = () => {
 }
 
 const logout = () => {
-  Horizon.clearAuthTokens()
+  hz.clearAuthTokens()
 }
 
 const getStatus = () => {
-  return horizon.status()
+  return hzconn.status()
 }
 
 const githubLogin = () => {
-  return horizon.authEndpoint('github')
+  return hzconn.authEndpoint('github')
 }
 
 const googleLogin = () => {
-  return horizon.authEndpoint('google')
+  return hzconn.authEndpoint('google')
 }
 
 const getCountries = () => {
-  return horizon('countries').fetch()
+  return hzconn('countries').fetch()
 }
 
 const onReady = (cb) => {
-  horizon.onReady(cb)
+  hzconn.onReady(cb)
 }
 
 export default {
@@ -48,6 +49,5 @@ export default {
   logout,
   getCountries,
   getStatus,
-  horizon,
   onReady
 }

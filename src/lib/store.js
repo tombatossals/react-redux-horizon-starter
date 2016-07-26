@@ -5,6 +5,8 @@ import createLogger from 'redux-logger'
 
 export default () => {
   const middlewares = [thunk]
+
+  // eslint-disable-next-line
   if (process.env.NODE_ENV !== 'production') {
     middlewares.push(createLogger())
   }

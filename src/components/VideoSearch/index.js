@@ -9,7 +9,7 @@ export default class VideoSearch extends React.Component {
     results: []
   }
 
-  searchVideo = (term) => {
+  handleSearchVideo = (term) => {
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=24&type=video&q=${term}&key=${KEY}`
     window.fetch(url)
       .then(res => res.json())
@@ -27,7 +27,7 @@ export default class VideoSearch extends React.Component {
     return (
       <div>
         <h1>Youtube</h1>
-        <DebouncedInput autoFocus placeholder='Search...' onChange={this.searchVideo} />
+        <DebouncedInput autoFocus placeholder='Search...' onChange={this.handleSearchVideo} />
         <VideoList results={this.state.results} />
       </div>
     )

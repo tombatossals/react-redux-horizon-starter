@@ -9,7 +9,7 @@ import { UserStatus } from '../../../lib/constants'
 class Login extends React.Component {
   static propTypes = {
     user: getUserPropTypes(),
-    authenticate: React.PropTypes.func.isRequired,
+    handleAuthenticate: React.PropTypes.func.isRequired,
     router: React.PropTypes.any
   }
 
@@ -31,8 +31,8 @@ class Login extends React.Component {
     return (
       <LoginComponent
         external
-        onAuthenticate={this.props.authenticate}
-        status={this.props.user.status}
+        onAuthenticate={this.props.handleAuthenticate}
+        status={this.props.user.actionStatus}
         message={this.props.user.message}
       />
     )
@@ -43,4 +43,4 @@ const mapStateToProps = ({ user }) => ({
   user
 })
 
-export default withRouter(connect(mapStateToProps, { authenticate })(Login))
+export default withRouter(connect(mapStateToProps, { handleAuthenticate: authenticate })(Login))

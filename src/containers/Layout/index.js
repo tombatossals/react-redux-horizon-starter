@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { checkAuthToken } from '../../actions'
 import Header from '../../components/Header'
 import { withRouter } from 'react-router'
-import styles from './styles'
+import './styles.css'
 
 class Layout extends React.Component {
   static propTypes = {
@@ -18,14 +18,14 @@ class Layout extends React.Component {
     this.props.checkAuthToken()
   }
 
-  navigate = (url) => {
+  handleNavigate = (url) => {
     this.props.router.push(url)
   }
 
   render () {
     return (
-      <div style={styles.layout}>
-        <Header user={this.props.user} onNavigationChange={this.navigate} />
+      <div className="layout">
+        <Header user={this.props.user} onNavigationChange={this.handleNavigate} />
         {this.props.children}
       </div>
     )

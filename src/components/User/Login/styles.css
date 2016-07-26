@@ -1,0 +1,11 @@
+.login-error {
+  font-size: 14px;
+  font-weight: bold;
+  color: red;
+  padding: 1em;
+}
+
+.login-oauth {
+  width: 60%;
+  margin: auto;
+}

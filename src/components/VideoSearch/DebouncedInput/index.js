@@ -37,7 +37,7 @@ export default class DebouncedInput extends React.Component {
     window.clearTimeout(tid)
   }
 
-  changeTerm = (event) => {
+  handleChangeTerm = (event) => {
     const { value } = event.target
     const { tid } = this.state
 
@@ -67,7 +67,7 @@ export default class DebouncedInput extends React.Component {
         className="form-control"
         {...this.props}
         value={this.state.value}
-        onChange={this.changeTerm} />
+        onChange={this.handleChangeTerm} />
     )
   }
 }

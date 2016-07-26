@@ -1,9 +1,9 @@
 import React from 'react'
 import Logo from '../Logo'
-import styles from './styles'
 import { getUserPropTypes } from '../../../lib/proptypes'
 import { UserStatus } from '../../../lib/constants'
 import { Link } from 'react-router'
+import './styles.css'
 
 export default class HeaderToolbar extends React.Component {
   static propTypes = {
@@ -35,24 +35,20 @@ export default class HeaderToolbar extends React.Component {
     this.props.onNavigationChange(url)
   }
 
-  navigateHome = () => {
+  handleNavigateHome = () => {
     this.handleOnClick('/home')
-  }
-
-  navigateUserLogin = () => {
-    this.handleOnClick('/login')
   }
 
   render () {
     return (
-      <div style={styles.toolbar}>
+      <div className="header-layout">
         {this.props.user.status === UserStatus.ANONYMOUS &&
-          <Link style={styles.menu} to="/login">Login</Link>
+          <Link className="header-menu" to="/login">Login</Link>
         }
         {this.props.user.status === UserStatus.AUTHENTICATED &&
-          <Link style={styles.menu} to="/logout">Logout</Link>
+          <Link className="header-menu" to="/logout">Logout</Link>
         }
-        <Logo style={styles.logo} text="Horizon Oauth" onClick={this.navigateHome} />
+        <Logo className="header-logo" text="Horizon Oauth" onClick={this.handleNavigateHome} />
       </div>
     )
   }

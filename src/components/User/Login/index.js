@@ -1,20 +1,29 @@
 import React from 'react'
-import styles from './styles'
-import { AsyncStatus, UserStatus } from '../../../lib/constants'
+import { AsyncStatus } from '../../../lib/constants'
+import './styles.css'
+import loading from './loading.gif'
 
 export default class Login extends React.Component {
   static propTypes = {
     onAuthenticate: React.PropTypes.func.isRequired,
-    status: React.PropTypes.string.isRequired
+    status: React.PropTypes.string,
+    message: React.PropTypes.string
   }
 
   state = {
-    status: undefined
+    status: AsyncStatus.IDLE
   }
 
-  githubLogin = () => {
+  componentWillReceiveProps(props) {
     this.setState({
-      status: UserStatus.REQUEST
+      status: props.status,
+      message: props.message
+    })
+  }
+
+  handleGithubLogin = () => {
+    this.setState({
+      status: AsyncStatus.REQUEST
     })
 
     this.props.onAuthenticate({
@@ -22,9 +31,9 @@ export default class Login extends React.Component {
     })
   }
 
-  googleLogin = () => {
+  handleGoogleLogin = () => {
     this.setState({
-      status: UserStatus.REQUEST
+      status: AsyncStatus.REQUEST
     })
 
     this.props.onAuthenticate({
@@ -34,21 +43,27 @@ export default class Login extends React.Component {
 
   render () {
     return (
-      <div style={styles.oauth}>
+      <div className="login-oauth">
         <h2>Log-in with an Oauth provider</h2>
         <div>
-          <button style={styles.google} onClick={this.googleLogin}>
+          <button className="login-button" onClick={this.handleGoogleLogin}>
             Google Sign in
           </button>
           &nbsp;
-          <button style={styles.github} onClick={this.githubLogin}>
+          <button className="login-button" onClick={this.handleGithubLogin}>
             Github Sign in
           </button>
-          {this.state.status === UserStatus.REQUEST &&
-            <div style={styles.loading}>
-              <img src="/static/images/loading.gif" />
+          {this.state.status === AsyncStatus.REQUEST &&
+            <div>
+              <img src={loading} />
             </div>
           }
+          {this.state.status === AsyncStatus.FAILED &&
+            <div className="login-error">
+              { this.state.message }
+            </div>
+          }
+
         </div>
       </div>
     )

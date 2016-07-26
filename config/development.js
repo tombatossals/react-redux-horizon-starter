@@ -3,16 +3,11 @@ module.exports = {
   token_secret: 'superSecret',
   express: {
     host: '127.0.0.1',
-    port: 3000,
-    ssl: {
-      cert: 'config/horizon-cert.pem',
-      key: 'config/horizon-key.pem'
-    }
+    port: 3000
   },
   devServer: {
-    publicPath: 'https://127.0.0.1:9005/static',
+    publicPath: 'http://127.0.0.1:9005/static',
     host: '127.0.0.1',
-    https: true,
     port: 9005,
     hot: true,
     historyApiFallback: true,
