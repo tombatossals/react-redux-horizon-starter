@@ -38,9 +38,12 @@ app.use('/', (req, res) => {
 const run = () => {
   const port = config.express.port
 
-  const options = {
-    key: fs.readFileSync(config.express.ssl.key),
-    cert: fs.readFileSync(config.express.ssl.cert)
+  let options ={}
+  if (process.env.NODE_ENV === 'production') {
+    options = {
+      key: fs.readFileSync(config.express.ssl.key),
+      cert: fs.readFileSync(config.express.ssl.cert)
+    }
   }
 
   const server = https.createServer(options, app)
