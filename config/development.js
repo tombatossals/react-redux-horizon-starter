@@ -3,20 +3,13 @@ module.exports = {
   token_secret: 'superSecret',
   express: {
     host: '127.0.0.1',
-    port: 3000
-  },
-  devServer: {
-    publicPath: 'http://127.0.0.1:9005/static',
-    host: '127.0.0.1',
-    port: 9005,
-    hot: true,
-    historyApiFallback: true,
-    stats: {
-      colors: true,
-      chunkModules: false,
-      modules: false
+    port: 5000,
+    ssl: {
+      cert: 'config/horizon-cert.pem',
+      key: 'config/horizon-key.pem'
     }
   },
+  clientProxy: 'http://127.0.0.1:3000',
   auth: {
     providers: {
       facebook: {

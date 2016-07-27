@@ -2,8 +2,7 @@ import hz from '@horizon/client'
 
 const hzconn = hz({
   authType: 'token',
-  secure: false,
-  host: 'http://localhost:8181'
+  secure: true
 })
 
 const getCurrentUser = () => {
