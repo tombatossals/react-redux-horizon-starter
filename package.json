@@ -31,6 +31,7 @@
   },
   "scripts": {
     "dev": "NODE_ENV=development babel-node src/server.js",
+    "prod": "NODE_ENV=production babel-node src/server.js",
     "standard": "standard"
   }
 }

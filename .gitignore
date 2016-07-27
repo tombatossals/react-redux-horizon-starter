@@ -5,3 +5,4 @@ logs/
 .build
 config/horizon-cert.pem
 config/horizon-key.pem
+frontend/build
