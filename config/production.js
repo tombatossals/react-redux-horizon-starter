@@ -3,7 +3,7 @@ module.exports = {
   token_secret: 'hellothere',
   express: {
     host: '127.0.0.1',
-    port: 3000,
+    port: 5000,
     ssl: {
       cert: 'config/horizon-cert.pem',
       key: 'config/horizon-key.pem'

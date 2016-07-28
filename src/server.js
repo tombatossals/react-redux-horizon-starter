@@ -1,20 +1,19 @@
 import express from 'express'
-import { default as api } from './backend/api'
+import fs from 'fs'
+import api from './backend/api'
 import config from '../config'
 import proxy from 'http-proxy-middleware'
 
 const app = express()
+let index
 
 if (process.env.NODE_ENV === 'production') {
-  const host = `//${config.express.host}:${config.express.port}`
-  app.get('/favicon.ico', proxy({target: `${host}`}))
+  app.use(express.static(`${__dirname}/../frontend/build`))
+  index = fs.readFileSync(`${__dirname}/../frontend/build/index.html`, 'utf8')
 } else {
   app.get('/favicon.ico', proxy({target: `${config.clientProxy}`}))
   app.get('/bundle.js', proxy({target: `${config.clientProxy}`}))
-}
-
-app.use('/', (req, res) =>
-  res.status(200).send(`<!doctype html>
+  index = `<!doctype html>
     <html lang="en">
       <head>
         <meta charset="utf-8">
@@ -26,6 +25,9 @@ app.use('/', (req, res) =>
         <div id="root"></div>
         <script type="text/javascript" src="/bundle.js"></script>
       </body>
-    </html>`))
+    </html>`
+}
 
+app.use('/', (req, res) => res.status(200).send(index))
 api.run(app)
+
