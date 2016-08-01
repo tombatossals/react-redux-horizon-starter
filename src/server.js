@@ -8,11 +8,16 @@ const app = express()
 let index
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(`${__dirname}/../frontend/build`))
-  index = fs.readFileSync(`${__dirname}/../frontend/build/index.html`, 'utf8')
+  app.use(express.static(`${__dirname}/../build`))
+  index = fs.readFileSync(`${__dirname}/../build/index.html`, 'utf8')
 } else {
   app.get('/favicon.ico', proxy({target: `${config.clientProxy}`}))
   app.get('/bundle.js', proxy({target: `${config.clientProxy}`}))
+  app.get('/sockjs-node*', proxy({target: `${config.clientProxy}`}))
+  app.get('/*.gif$', proxy({target: `${config.clientProxy}`}))
+  app.get('/*.png$', proxy({target: `${config.clientProxy}`}))
+  app.get('/*.jpg$', proxy({target: `${config.clientProxy}`}))
+  app.get('/*.ttf$', proxy({target: `${config.clientProxy}`}))
   index = `<!doctype html>
     <html lang="en">
       <head>

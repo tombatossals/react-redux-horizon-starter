@@ -32,7 +32,6 @@ class Login extends React.Component {
       <LoginComponent
         external
         onAuthenticate={this.props.handleAuthenticate}
-        status={this.props.user.actionStatus}
         message={this.props.user.message}
       />
     )

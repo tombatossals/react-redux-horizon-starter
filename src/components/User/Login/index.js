@@ -6,19 +6,30 @@ import loading from './loading.gif'
 export default class Login extends React.Component {
   static propTypes = {
     onAuthenticate: React.PropTypes.func.isRequired,
-    status: React.PropTypes.string,
-    message: React.PropTypes.string
+    status: React.PropTypes.bool.isRequired,
+    message: React.PropTypes.string.isRequired
   }
 
   state = {
     status: AsyncStatus.IDLE
   }
 
+  componentDidMount () {
+    if (this.props.message) {
+      this.setState({
+        status: AsyncStatus.IDLE,
+        message: this.props.message
+      })
+    }
+  }
+
   componentWillReceiveProps(props) {
-    this.setState({
-      status: props.status,
-      message: props.message
-    })
+    if (props.message) {
+      this.setState({
+        status: AsyncStatus.IDLE,
+        message: props.message
+      })
+    }
   }
 
   handleGithubLogin = () => {
@@ -55,10 +66,10 @@ export default class Login extends React.Component {
           </button>
           {this.state.status === AsyncStatus.REQUEST &&
             <div>
-              <img src={loading} />
+              <img src={loading} role="presentation" />
             </div>
           }
-          {this.state.status === AsyncStatus.FAILED &&
+          {this.state.message &&
             <div className="login-error">
               { this.state.message }
             </div>

@@ -6,9 +6,9 @@ export const AsyncStatus = {
 }
 
 export const UserStatus = {
-  UNDETERMINED: 'UNDETERMINED',
   AUTHENTICATED: 'AUTHENTICATED',
-  ANONYMOUS: 'ANONYMOUS'
+  ANONYMOUS: 'ANONYMOUS',
+  UNDETERMINED: 'UNDETERMINED'
 }
 
 export const UserActions = {
